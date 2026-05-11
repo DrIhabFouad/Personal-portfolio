@@ -1,368 +1,497 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Ihab Fouad | Physician, Innovator & Author</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#081c29', // Deep Navy
-                        secondary: '#0291be', // Main Accent Blue
-                        secondaryHover: '#02789e', // Hover Blue
-                        accent: '#D4AF37', // Excellence Gold
-                        cream: '#FDFDFB',
-                        slate: {
-                            850: '#1E293B'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <title>DR. Ihab Fouad | Physician | Inventor | Author</title>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FDFDFB; }
-        .hero-gradient { background: radial-gradient(circle at top right, #0291be33 0%, #081c29 100%); }
-        .section-title { font-family: 'Playfair Display', serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border: 1px solid rgba(226, 232, 240, 0.8); }
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .book-shadow { filter: drop-shadow(20px 20px 30px rgba(0,0,0,0.3)); }
+        :root {
+            --cream-ivory: #FFFFEA;
+            --brand-blue: #0291be;
+            --gold-orange: linear-gradient(135deg, #ff8c00 0%, #ffcc00 50%, #ff8c00 100%);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--brand-blue);
+            overflow-x: hidden;
+        }
+
+        h1, h2, .name-brand {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Header / Banner --- */
+        header {
+            background-color: var(--cream-ivory);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .branding {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name-brand {
+            font-size: 1.8rem;
+            color: var(--brand-blue);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .titles {
+            font-size: 0.85rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--brand-blue);
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: #ff8c00;
+        }
+
+        /* --- Common Section Styles --- */
+        section {
+            padding: 80px 10%;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            object-fit: cover;
+        }
+
+        /* --- Carousel Styles --- */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0178a0;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .carousel-slide svg, .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-container {
+            flex: 1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--cream-ivory);
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* --- Shiny Luxurious Buttons --- */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            position: relative;
+            background: var(--gold-orange);
+            background-size: 200% auto;
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.5);
+            background-position: right center;
+        }
+
+        /* --- Contact Form Styles --- */
+        .contact-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input, textarea, select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ffcc00;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .info-item i {
+            color: #ffcc00;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            section {
+                flex-direction: column;
+                text-align: center;
+                padding: 60px 5%;
+                gap: 40px;
+            }
+            .image-container { width: 100%; max-width: 400px; }
+            h2 { font-size: 2rem; }
+            .btn-group { justify-content: center; }
+            header { flex-direction: column; gap: 15px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
-<body class="text-slate-900 overflow-x-hidden">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex flex-col">
-                <span class="text-xl font-serif font-bold text-primary leading-tight">Dr. Ihab Fouad</span>
-                <span class="text-[10px] uppercase tracking-[0.2em] text-secondary font-bold">MBBS | Innovator | Author</span>
-            </div>
-            <div class="hidden lg:flex space-x-10 font-semibold text-xs uppercase tracking-widest text-slate-500">
-                <a href="#innovation" class="hover:text-primary transition-colors">Innovations</a>
-                <a href="#book" class="hover:text-primary transition-colors">The Book</a>
-                <a href="#clinical" class="hover:text-primary transition-colors">Clinical</a>
-                <a href="#awards" class="hover:text-primary transition-colors">Awards</a>
-                <a href="#contact" class="px-6 py-2.5 bg-primary text-white rounded-full hover:bg-slate-800 transition-all shadow-lg shadow-primary/20">Connect</a>
-            </div>
-            <button class="lg:hidden text-primary text-2xl" onclick="toggleMenu()">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
+    <!-- Header Banner -->
+    <header>
+        <div class="branding">
+            <div class="name-brand">DR. Ihab Fouad</div>
+            <div class="titles">Physician • Inventor • Author</div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b p-6 space-y-4 shadow-2xl">
-            <a href="#innovation" class="block text-lg" onclick="toggleMenu()">Innovations</a>
-            <a href="#book" class="block text-lg" onclick="toggleMenu()">The Book</a>
-            <a href="#clinical" class="block text-lg" onclick="toggleMenu()">Clinical</a>
-            <a href="#awards" class="block text-lg" onclick="toggleMenu()">Awards</a>
-            <a href="#contact" class="block text-lg font-bold text-secondary" onclick="toggleMenu()">Connect</a>
+        <div class="social-links">
+            <a href="https://youtu.be/xyUfGqxwjp4?si=dqqfRn-QxAswtTOp" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@dr..ihab.fouad?_r=1&_t=ZS-96HIrylw8jl" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/dr.ihab_fouad?igsh=cjRtempwZXM0c3B4" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/dr-ihab-fouad-820a7833a" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-20 hero-gradient text-white overflow-hidden">
-        <div class="absolute right-[-10%] bottom-0 w-2/3 h-full opacity-30 hidden xl:block">
-            <!-- Portrait Placeholder: Best to use the suit-and-tie photo from the CV -->
-            <img src="https://placehold.co/800x1200/0F172A/ffffff?text=Dr.+Ihab+Fouad" alt="Dr. Ihab Fouad" class="object-cover w-full h-full grayscale mix-blend-lighten">
+    <!-- Intro Section -->
+    <section id="intro">
+        <div class="image-container">
+            <img src="Personal photo.jpg" alt="DR. Ihab Fouad">
         </div>
-        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-3 py-2 px-4 bg-white/5 border border-white/10 rounded-full mb-8">
-                    <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
-                    <span class="text-xs font-bold tracking-widest uppercase text-slate-300">Physician & US Patent Holder</span>
-                </div>
-                <h1 class="text-5xl md:text-8xl font-serif mb-8 leading-[1.1]">Bridging <span class="italic text-accent">Medicine</span> & Modern Innovation.</h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-light max-w-2xl">
-                    Medical Doctor dedicated to clinical excellence, healthcare leadership, and scientific innovation. Shaping the future of surgery and education through award-winning technology.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-5">
-                    <a href="#innovation" class="bg-secondary text-white px-10 py-4 rounded-xl font-bold text-center hover:bg-secondaryHover transition-all shadow-xl shadow-secondary/20">Explore My Patents</a>
-                    <a href="#book" class="border border-white/20 bg-white/5 backdrop-blur-sm px-10 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition-all">Latest Book Publication</a>
-                </div>
-            </div>
-        </div>
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 animate-bounce">
-            <i class="fa-solid fa-chevron-down text-2xl"></i>
-        </div>
-    </section>
-
-    <!-- Innovation Spotlight -->
-    <section id="innovation" class="py-32 bg-white reveal">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-20 items-center">
-                <div class="lg:w-1/2">
-                    <h2 class="section-title text-4xl md:text-5xl text-primary mb-8 leading-tight">Healthcare <br><span class="text-secondary italic">Redefined</span>.</h2>
-                    <div class="space-y-8">
-                        <div class="p-8 rounded-2xl border border-slate-100 bg-cream group hover:border-secondary/30 transition-all">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary">
-                                    <i class="fa-solid fa-shield-halved text-xl"></i>
-                                </div>
-                                <h3 class="text-xl font-bold">SurgeGuard</h3>
-                            </div>
-                            <p class="text-slate-600 mb-4">A United States Patent (USPTO) invention focusing on a smart surgical inventory control system designed to enhance safety and efficiency in the operating room.</p>
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-accent">Patent Status: Granted (USA)</span>
-                        </div>
-                        <div class="p-8 rounded-2xl border border-slate-100 bg-cream group hover:border-secondary/30 transition-all">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center text-primary">
-                                    <i class="fa-solid fa-chart-line text-xl"></i>
-                                </div>
-                                <h3 class="text-xl font-bold">MediTrack / XTrack</h3>
-                            </div>
-                            <p class="text-slate-600 mb-4">An award-winning educational technology solution that monitors and enhances medical students' productivity and performance metrics.</p>
-                            <div class="flex gap-4">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Award Winning 2024</span>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Under Review (USA)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 relative">
-                    <div class="bg-primary rounded-3xl p-10 text-white relative overflow-hidden shadow-2xl">
-                        <div class="relative z-10">
-                            <div class="text-accent font-serif italic text-2xl mb-4">Research Impact</div>
-                            <div class="space-y-6">
-                                <div class="border-l-2 border-accent/30 pl-6">
-                                    <h4 class="font-bold text-lg mb-1">Computer Vision Syndrome</h4>
-                                    <p class="text-sm text-slate-400">Leading research on university populations during the pandemic.</p>
-                                </div>
-                                <div class="border-l-2 border-accent/30 pl-6">
-                                    <h4 class="font-bold text-lg mb-1">Plastic & Public Health</h4>
-                                    <p class="text-sm text-slate-400">First Author publication on the dangers of plastic use in food industry & diabetes risks.</p>
-                                </div>
-                                <div class="border-l-2 border-accent/30 pl-6">
-                                    <h4 class="font-bold text-lg mb-1">Medical Education Tools</h4>
-                                    <p class="text-sm text-slate-400">Investigating e-portfolios as effective surgical training modules.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-secondary/20 rounded-full blur-[100px]"></div>
-                    </div>
-                </div>
+        <div class="content-container">
+            <h2>Pioneering Healthcare</h2>
+            <p>A General Practitioner dedicated to evidence-based wellness, medical innovation, and clinical storytelling. Bridging the gap between medicine and technology.</p>
+            <div class="btn-group">
+                <a href="https://www.amazon.com/Live-Joy-Dr-Ihab-Fouad/dp/B0FVV7YNK6" target="_blank" class="btn">Buy Book</a>
+                <a href="#invention" class="btn">Invest in my invention</a>
             </div>
         </div>
     </section>
 
-    <!-- The Book -->
-    <section id="book" class="py-32 bg-slate-850 text-white overflow-hidden reveal">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-12 gap-16 items-center">
-                <div class="lg:col-span-5 flex justify-center lg:justify-start">
-                    <div class="relative group perspective-1000">
-                        <!-- Custom CSS Book Placeholder -->
-                        <div class="w-64 h-96 bg-white rounded-r-lg relative overflow-hidden transition-all duration-700 book-shadow transform group-hover:rotate-y-[-15deg]">
-                            <div class="absolute inset-0 bg-gradient-to-br from-[#02789e] to-primary p-10 flex flex-col items-center justify-between text-center border-l-8 border-accent">
-                                <div class="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Dr. Ihab Fouad</div>
-                                <div>
-                                    <h3 class="text-3xl font-serif font-bold leading-tight mb-2">LIVE THE JOY</h3>
-                                    <div class="w-10 h-0.5 bg-accent mx-auto mb-4"></div>
-                                    <p class="text-[9px] uppercase tracking-widest text-slate-300">Secrets of a Healthy <br>Mind and Body</p>
-                                </div>
-                                <div class="w-16 h-16 border border-white/20 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-leaf text-accent"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-7">
-                    <span class="inline-block py-1 px-3 bg-secondary/20 text-secondary rounded-full text-xs font-bold tracking-widest uppercase mb-6">Featured Publication</span>
-                    <h2 class="section-title text-4xl md:text-6xl mb-8">Live the Joy</h2>
-                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-                        A scientifically grounded exploration of mental health, nutrition, and personal development. Authored to bridge the gap between evidence-based medical concepts and practical wellbeing.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 mb-12">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-brain text-secondary"></i>
-                            <span class="text-sm font-medium">Mental Resilience</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-apple-whole text-secondary"></i>
-                            <span class="text-sm font-medium">Nutritional Science</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-users text-secondary"></i>
-                            <span class="text-sm font-medium">Leadership Traits</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-heart-pulse text-secondary"></i>
-                            <span class="text-sm font-medium">Holistic Health</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://www.amazon.com/Live-Joy-Dr-Ihab-Fouad-ebook/dp/B0FVMGJYFZ" target="_blank" class="bg-white text-primary px-10 py-4 rounded-xl font-bold flex items-center gap-3 hover:bg-slate-100 transition-all">
-                            <i class="fa-brands fa-amazon text-xl"></i> Available on Amazon
-                        </a>
-                    </div>
-                </div>
+    <!-- Invention Section -->
+    <section id="invention">
+        <div class="image-container">
+            <img src="photo_5767288330411249352_y.jpg" alt="SurgeGuard Surgical Innovation">
+        </div>
+        <div class="content-container">
+            <h2>SurgeGuard Innovation</h2>
+            <p>SurgeGuard is a breakthrough in surgical precision and safety. This invention prevents major medical errors like contamination during surgery, providing essential legal protection for both the surgeon and patient by documenting procedures meticulously. By preventing the retention of surgical equipment inside patients, it sets a new standard for operating room safety and patient care.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn">Invest in SurgeGuard</a>
             </div>
         </div>
     </section>
 
-    <!-- Clinical Foundations -->
-    <section id="clinical" class="py-32 bg-cream reveal">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div class="max-w-2xl">
-                    <h2 class="section-title text-4xl text-primary mb-4">Clinical Excellence</h2>
-                    <p class="text-slate-500">A track record of excellence across 19 major public and private medical facilities in the UAE.</p>
+    <!-- Book Section -->
+    <section id="book">
+        <div class="image-container">
+            <svg width="350" height="450" viewBox="0 0 350 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="350" height="450" rx="10" fill="#0178a0"/>
+                <path d="M70 100H280M70 150H280M70 200H200" stroke="#FFFFEA" stroke-width="4" stroke-opacity="0.3"/>
+                <text x="50%" y="85%" text-anchor="middle" fill="#FFFFEA" font-family="Playfair Display" font-size="28" font-weight="700">Live The Joy</text>
+                <text x="50%" y="92%" text-anchor="middle" fill="#FFFFEA" font-family="Inter" font-size="14" opacity="0.5">Author: Dr. Ihab Fouad</text>
+            </svg>
+        </div>
+        <div class="content-container">
+            <h2>Live The Joy</h2>
+            <p>Explore the principles of mind-body fulfillment in my latest book. A comprehensive guide to metabolic health and clinical wellness for the modern reader, focused on actionable clinical insights.</p>
+            <div class="btn-group">
+                <a href="https://www.amazon.com/Live-Joy-Dr-Ihab-Fouad/dp/B0FVV7YNK6" target="_blank" class="btn">Get on Amazon</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="image-container">
+            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="400" rx="15" fill="#0178a0"/>
+                <path d="M150 150H250V250H150V150Z" stroke="#FFFFEA" stroke-width="2" stroke-opacity="0.3"/>
+                <text x="50%" y="85%" text-anchor="middle" fill="#FFFFEA" font-family="Inter" font-size="14" opacity="0.6">Published Research Article</text>
+                <text x="50%" y="45%" text-anchor="middle" fill="#FFFFEA" font-family="Playfair Display" font-size="20">The Hidden Dangers of Plastic</text>
+            </svg>
+        </div>
+        <div class="content-container">
+            <h2>Clinical Research</h2>
+            <p>My recent publication, "The Hidden Dangers of Plastic Use in the Food Industry: Implications for Diabetes and Public Health," examines how microplastics and endocrine-disrupting chemicals impact metabolic health and type 2 diabetes risk.</p>
+            <div class="btn-group">
+                <a href="3471-Article Text-9365-10577-10-20250917.pdf" target="_blank" class="btn">Read Publication PDF</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knowledge Center Section -->
+    <section id="knowledge">
+        <div class="image-container">
+            <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="300" rx="15" fill="#0178a0"/>
+                <text x="50%" y="90%" text-anchor="middle" fill="#FFFFEA" font-family="Inter" font-size="14" opacity="0.5">Medical Blog Archive</text>
+            </svg>
+        </div>
+        <div class="content-container">
+            <h2>Knowledge Center</h2>
+            <p>Access a wealth of clinical information and metabolic health tips through my blog. I translate complex medical journals into practical advice for patients and colleagues alike.</p>
+            <div class="btn-group">
+                <button class="btn">Read My Blogs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteering Section -->
+    <section id="volunteering">
+        <div class="image-container">
+            <div class="carousel-container" id="volunteering-carousel">
+                <div class="carousel-slide active">
+                    <svg viewBox="0 0 400 400" fill="#0178a0"><rect width="400" height="400"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20">Volunteering Image 1</text></svg>
                 </div>
-                <div class="flex gap-4">
-                    <div class="text-center px-6 py-4 glass-card rounded-2xl">
-                        <div class="text-3xl font-serif font-bold text-secondary">19</div>
-                        <div class="text-[10px] uppercase font-bold text-slate-400">Rotations</div>
-                    </div>
-                    <div class="text-center px-6 py-4 glass-card rounded-2xl">
-                        <div class="text-3xl font-serif font-bold text-primary">UAE</div>
-                        <div class="text-[10px] uppercase font-bold text-slate-400">Nationwide</div>
-                    </div>
+                <div class="carousel-slide">
+                    <svg viewBox="0 0 400 400" fill="#0291be"><rect width="400" height="400"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20">Volunteering Image 2</text></svg>
+                </div>
+                <div class="carousel-slide">
+                    <svg viewBox="0 0 400 400" fill="#016c8e"><rect width="400" height="400"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20">Volunteering Image 3</text></svg>
                 </div>
             </div>
+        </div>
+        <div class="content-container">
+            <h2>Volunteering & Community</h2>
+            <p>Committed to social impact through medical missions and community health programs. My work focuses on providing clinical expertise to underserved populations and improving health literacy across the region.</p>
+        </div>
+    </section>
+
+    <!-- Academic Section -->
+    <section id="academic">
+        <div class="image-container">
+            <div class="carousel-container" id="academic-carousel">
+                <div class="carousel-slide active">
+                    <svg viewBox="0 0 400 400" fill="#0178a0"><rect width="400" height="400"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20">Academic Image 1</text></svg>
+                </div>
+                <div class="carousel-slide">
+                    <svg viewBox="0 0 400 400" fill="#0291be"><rect width="400" height="400"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20">Academic Image 2</text></svg>
+                </div>
+                <div class="carousel-slide">
+                    <svg viewBox="0 0 400 400" fill="#016c8e"><rect width="400" height="400"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20">Academic Image 3</text></svg>
+                </div>
+            </div>
+        </div>
+        <div class="content-container">
+            <h2>Academic Achievements</h2>
+            <p>MBBS Graduate with honors. Specialized clinical training across multiple surgical and internal medicine disciplines at world-class institutions including Mediclinic and University of Sharjah.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="content-container" style="max-width: 500px;">
+            <h2>Get in Touch</h2>
+            <p style="color: #ffcc00; font-weight: 600;">For investment inquiries regarding SurgeGuard or professional collaboration, please provide your details.</p>
             
-            <div class="grid lg:grid-cols-3 gap-8">
-                <div class="glass-card p-10 rounded-3xl hover:shadow-2xl transition-all group">
-                    <div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary text-2xl mb-8 group-hover:bg-primary group-hover:text-white transition-all">
-                        <i class="fa-solid fa-hospital-user"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Mediclinic Internship</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Currently completing a high-impact internship at Mediclinic Airport Road Hospital (2024-2025), rotating through Pediatrics, ER, OBGYN, and Internal Medicine.</p>
-                    <div class="text-[10px] font-bold text-secondary uppercase tracking-widest">Abu Dhabi, UAE</div>
-                </div>
-
-                <div class="glass-card p-10 rounded-3xl hover:shadow-2xl transition-all group">
-                    <div class="w-14 h-14 bg-secondary/5 rounded-2xl flex items-center justify-center text-secondary text-2xl mb-8 group-hover:bg-secondary group-hover:text-white transition-all">
-                        <i class="fa-solid fa-stethoscope"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Lifestyle Medicine</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Pursuing diploma at the American College of Lifestyle Medicine. Specialized focus on peptides, IV therapy, and evidence-based wellness interventions.</p>
-                    <div class="text-[10px] font-bold text-secondary uppercase tracking-widest">Global Certification</div>
-                </div>
-
-                <div class="glass-card p-10 rounded-3xl hover:shadow-2xl transition-all group">
-                    <div class="w-14 h-14 bg-accent/5 rounded-2xl flex items-center justify-center text-accent text-2xl mb-8 group-hover:bg-accent group-hover:text-white transition-all">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Academic Leadership</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Served as Academic Assistant to the Chancellor at UOS. Led team-based learning groups and mentored students in medical foundational sciences.</p>
-                    <div class="text-[10px] font-bold text-secondary uppercase tracking-widest">Education Specialist</div>
-                </div>
+            <div class="contact-info">
+                <div class="info-item"><i class="fas fa-envelope"></i> drihabfouad@outlook.com</div>
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i> United Arab Emirates</div>
             </div>
+        </div>
+        
+        <div class="image-container" style="flex: 1.5;">
+            <form class="contact-form" onsubmit="event.preventDefault();">
+                <div class="form-row">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" placeholder="Phone Number" required>
+                    <input type="text" placeholder="Country" required>
+                </div>
+                <div class="form-row" style="grid-template-columns: 1fr;">
+                    <input type="text" placeholder="Full Address" required>
+                </div>
+                <textarea rows="5" placeholder="Your Message (Please specify if you are inquiring about investment in SurgeGuard)" required></textarea>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
         </div>
     </section>
 
-    <!-- Awards & Recognition -->
-    <section id="awards" class="py-32 bg-white reveal">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="section-title text-4xl text-primary">Honors & Accolades</h2>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="p-8 border border-slate-50 bg-cream rounded-2xl text-center">
-                    <div class="text-accent mb-4"><i class="fa-solid fa-award text-3xl"></i></div>
-                    <h4 class="font-bold text-sm mb-2">Academic Excellence Shield</h4>
-                    <p class="text-[10px] text-slate-400">Awarded by HH Sheikh Sultan Bin Ahmed Al Qassemi</p>
-                </div>
-                <div class="p-8 border border-slate-50 bg-cream rounded-2xl text-center">
-                    <div class="text-accent mb-4"><i class="fa-solid fa-microchip text-3xl"></i></div>
-                    <h4 class="font-bold text-sm mb-2">Innovation Award 2024</h4>
-                    <p class="text-[10px] text-slate-400">Design for Future Higher Education Competition</p>
-                </div>
-                <div class="p-8 border border-slate-50 bg-cream rounded-2xl text-center">
-                    <div class="text-accent mb-4"><i class="fa-solid fa-book-open text-3xl"></i></div>
-                    <h4 class="font-bold text-sm mb-2">RCPE Member</h4>
-                    <p class="text-[10px] text-slate-400">Royal College of Physicians of Edinburgh</p>
-                </div>
-                <div class="p-8 border border-slate-50 bg-cream rounded-2xl text-center">
-                    <div class="text-accent mb-4"><i class="fa-solid fa-flask text-3xl"></i></div>
-                    <h4 class="font-bold text-sm mb-2">Research Excellence</h4>
-                    <p class="text-[10px] text-slate-400">11th Undergraduate Research & Innovation Competition</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-32 bg-primary text-white reveal">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="section-title text-4xl md:text-5xl mb-8">Let's <span class="text-secondary italic">Collaborate</span>.</h2>
-                    <p class="text-slate-400 mb-10 text-lg">Inquiries regarding medical innovation partnerships, speaking engagements, or professional clinical consultation.</p>
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-6">
-                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center"><i class="fa-solid fa-envelope text-accent"></i></div>
-                            <div>
-                                <div class="text-xs text-slate-500 uppercase font-bold">Email</div>
-                                <div class="text-sm">Drihabfouad@outlook.com</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6">
-                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center"><i class="fa-solid fa-location-dot text-accent"></i></div>
-                            <div>
-                                <div class="text-xs text-slate-500 uppercase font-bold">Location</div>
-                                <div class="text-sm">Abu Dhabi, United Arab Emirates</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass-card p-10 rounded-[2.5rem] bg-white/5 border-white/10">
-                    <form onsubmit="event.preventDefault(); document.getElementById('success').classList.remove('hidden');" class="space-y-4">
-                        <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-secondary transition-all text-white">
-                        <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-secondary transition-all text-white">
-                        <textarea placeholder="Your Message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-secondary transition-all text-white"></textarea>
-                        <button class="w-full bg-secondary text-white font-bold py-5 rounded-xl hover:bg-secondaryHover transition-all shadow-xl shadow-secondary/10">Send Message</button>
-                    </form>
-                    <div id="success" class="hidden mt-6 p-4 bg-secondary/20 text-secondary rounded-xl border border-secondary/30 text-center text-sm">
-                        Thank you, Dr. Ihab. Your message has been received.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 bg-cream border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-xl font-serif font-bold text-primary">Dr. Ihab Fouad</div>
-            <div class="flex space-x-8 text-slate-400 text-xl">
-                <a href="#" class="hover:text-primary transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="hover:text-primary transition-all"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="hover:text-primary transition-all"><i class="fa-brands fa-researchgate"></i></a>
-            </div>
-            <p class="text-slate-400 text-[10px] uppercase tracking-widest font-bold">© 2024 Dr. Ihab Fouad Al Ashkar. MedTech & Clinical Excellence.</p>
-        </div>
+    <footer style="padding: 40px; text-align: center; color: rgba(255,255,255,0.4); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        &copy; 2026 DR. Ihab Fouad. All Rights Reserved.
     </footer>
 
     <script>
-        // Scroll reveal logic
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        window.onload = reveal;
+        function setupCarousel(containerId) {
+            const container = document.getElementById(containerId);
+            const slides = container.querySelectorAll('.carousel-slide');
+            let currentIndex = 0;
+            let interval;
 
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            function nextSlide() {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active');
+            }
+
+            function startTimer() {
+                interval = setInterval(nextSlide, 3000);
+            }
+
+            function stopTimer() {
+                clearInterval(interval);
+            }
+
+            // Start rotation
+            startTimer();
+
+            // Stop on interaction
+            container.addEventListener('mouseenter', stopTimer);
+            container.addEventListener('mouseleave', startTimer);
+            container.addEventListener('click', () => {
+                stopTimer();
+                nextSlide();
+            });
         }
+
+        window.onload = function() {
+            setupCarousel('volunteering-carousel');
+            setupCarousel('academic-carousel');
+        };
     </script>
+
 </body>
 </html>
