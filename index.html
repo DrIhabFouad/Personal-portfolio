@@ -423,19 +423,17 @@
         </div>
         
         <div class="image-container" style="flex: 1.5;">
-            <form class="contact-form" onsubmit="event.preventDefault();">
+            <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="ae12dc63-9e89-4aa4-8d71-d1c2b77d86f2">
                 <div class="form-row">
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-row">
-                    <input type="text" placeholder="Phone Number" required>
-                    <input type="text" placeholder="Country" required>
+                    <input type="text" name="phone" placeholder="Phone Number" required>
+                    <input type="text" name="country" placeholder="Country" required>
                 </div>
-                <div class="form-row" style="grid-template-columns: 1fr;">
-                    <input type="text" placeholder="Full Address" required>
-                </div>
-                <textarea rows="5" placeholder="Your Message (Please specify if you are inquiring about investment in SurgeGuard)" required></textarea>
+                <textarea name="message" rows="5" placeholder="Your Message (Please specify if you are inquiring about investment in SurgeGuard)" required></textarea>
                 <button type="submit" class="btn" style="width: 100%;">Send Message</button>
             </form>
         </div>
